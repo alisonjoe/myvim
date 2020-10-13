@@ -17,11 +17,15 @@ Plug 'Yggdroot/indentLine'
 Plug 'luochen1990/rainbow'
 " lightline
 Plug 'itchyny/lightline.vim'
+Plug 'flazz/vim-colorschemes'
 " Plugin options
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'rking/ag.vim'
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
+" markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 " 可以在导航目录中看到 git 版本信息
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
@@ -49,10 +53,10 @@ call plug#end()
 "==============================================================================
 
 " 开启24bit的颜色，开启这个颜色会更漂亮一些
-set termguicolors
+" set termguicolors
 " 配色方案, 可以从上面插件安装中的选择一个使用
 " colorscheme one " 主题
-set background=light " 主题背景 dark-深色; light-浅色
+set background=dark " 主题背景 dark-深色; light-浅色
 
 "==============================================================================
 " vim-go 插件
@@ -330,7 +334,7 @@ set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
 set smartindent " 开启新行时使用智能自动缩进
 set tabstop=4 " 设定 tab 长度为 4
 set ambiwidth=double " 设置为双字宽显示，否则无法完整显示如:☆
-set spell spelllang=en_us " 拼写检查
+" set spell spelllang=en_us " 拼写检查
 " set undofile " 打开这个设置，可以在文件关闭后，操作记录保留在一个文件里面，继续存在。这意味着，重新打开一个文件，可以撤销上一次编辑时的操作。撤消文件是跟原文件保存在一起的隐藏文件，文件名以.un~开头
 " 设置备份文件、交换文件、操作历史文件的保存位置 结尾的//表示生成的文件名带有绝对路径，路径中用%替换目录分隔符，这样可以防止文件重名
 " set backupdir=~/.vim/.backup//
