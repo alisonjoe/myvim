@@ -4,11 +4,12 @@
 call plug#begin('~/.vim/plugged')
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 " Using a non-default branch
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'fatih/vim-go',{'do':':GoUpateBinaries'}
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 Plug 'w0rp/ale'
 Plug 'honza/vim-snippets'
@@ -119,7 +120,7 @@ let g:airline_powerline_fonts = 1  " 支持 powerline 字体
 let g:airline_theme='dark'  " murmur配色不错
 
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+        let g:airline_symbols = {}
 endif
 let g:airline_left_sep = '▶'
 let g:airline_left_alt_sep = '❯'
@@ -142,29 +143,29 @@ let g:indent_guides_start_level           = 2  " 从第二层开始可视化显�
 " " 还可以通过在.vimrc定义全局变量g:coc_global_extensions，可以在 coc.vim 服务启动的时候，自动安装多个扩展插件
 " " 常用的 coc.vim 插件列表，可查看：coc-extensions[https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions]
 let g:coc_global_extensions = [
-			\ 'coc-json',
-			\ 'coc-css',
-			\ 'coc-cfn-lint',
-			\ 'coc-clangd',
-			\ 'coc-cmake',
-			\ 'coc-discord',
-			\ 'coc-go',
-			\ 'coc-highlight',
-			\ 'coc-phpactor',
-			\ 'coc-powershell',
-			\ 'coc-rust-analyzer',
-			\ 'coc-sh',
-			\ 'coc-snippets',
-			\ 'coc-sql',
-			\ 'coc-spell-checker',
-			\ 'coc-tabnine',
-			\ 'coc-texlab',
-			\ 'coc-todolist',
-			\ 'coc-vimlsp',
-			\ 'coc-xml',
-			\ 'coc-yaml',
-			\ 'coc-yank'
-			\ ]
+                        \ 'coc-json',
+                        \ 'coc-css',
+                        \ 'coc-cfn-lint',
+                        \ 'coc-clangd',
+                        \ 'coc-cmake',
+                        \ 'coc-discord',
+                        \ 'coc-go',
+                        \ 'coc-highlight',
+                        \ 'coc-phpactor',
+                        \ 'coc-powershell',
+                        \ 'coc-rust-analyzer',
+                        \ 'coc-sh',
+                        \ 'coc-snippets',
+                        \ 'coc-sql',
+                        \ 'coc-spell-checker',
+                        \ 'coc-tabnine',
+                        \ 'coc-texlab',
+                        \ 'coc-todolist',
+                        \ 'coc-vimlsp',
+                        \ 'coc-xml',
+                        \ 'coc-yaml',
+                        \ 'coc-yank'
+                        \ ]
 " CocList extensions  查看已安装插件
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -184,8 +185,8 @@ set shortmess+=c
 set signcolumn=yes
 
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -207,11 +208,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+        if (index(['vim','help'], &filetype) >= 0)
+                execute 'h '.expand('<cword>')
+        else
+                call CocAction('doHover')
+        endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -225,13 +226,13 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " augroup mygroup
-" 	autocmd!
-" 	" Setup formatexpr specified filetype(s).
-" 	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-" 	" Update signature help on jump placeholder
-" 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+"       autocmd!
+"       " Setup formatexpr specified filetype(s).
+"       autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"       " Update signature help on jump placeholder
+"       autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 " augroup end
-" 
+"
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -282,15 +283,15 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 function! SetupCommandAbbrs(from, to)
-	exec 'cnoreabbrev <expr> '.a:from
-				\ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
-				\ .'? ("'.a:to.'") : ("'.a:from.'"))'
+        exec 'cnoreabbrev <expr> '.a:from
+                                \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+                                \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
 "==============================================================================
- 
+
 
 "==============================================================================
 " 个人习惯
@@ -332,7 +333,7 @@ set ambiwidth=double " 设置为双字宽显示，否则无法完整显示如:�
 set spell spelllang=en_us " 拼写检查
 " set undofile " 打开这个设置，可以在文件关闭后，操作记录保留在一个文件里面，继续存在。这意味着，重新打开一个文件，可以撤销上一次编辑时的操作。撤消文件是跟原文件保存在一起的隐藏文件，文件名以.un~开头
 " 设置备份文件、交换文件、操作历史文件的保存位置 结尾的//表示生成的文件名带有绝对路径，路径中用%替换目录分隔符，这样可以防止文件重名
-" set backupdir=~/.vim/.backup// 
+" set backupdir=~/.vim/.backup//
 " set directory=~/.vim/.swp//
 " set undodir=~/.vim/.undo//
 " 自动切换工作目录
@@ -344,10 +345,3 @@ set autoread
 " 如果行尾有多余的空格（包括 Tab 键），该配置将让这些空格显示成可见的小方块
 " set listchars=tab:»◼︎,trail:◼︎
 " set list
-
-
-
-
-
-
-
