@@ -13,3 +13,8 @@ cd ~/.vim
 bash init.sh
 ```
 
+vim命令模式执行PlugInstall命令
+```
+:PlugInstall
+```
+
